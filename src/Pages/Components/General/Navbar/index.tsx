@@ -7,7 +7,7 @@ const NavBar = () => {
 
                 <HStack fontFamily={'brand.logoFont'}>
                     <Image src={logo} h={'60px'} />
-                    <Text fontSize={'22px'} color={'whitesmoke'}>Peregrino</Text>
+                    <Text fontSize={'22px'} color={'whitesmoke'}>Peregrinoo</Text>
                 </HStack>
 
                 <HStack spacing={'16px'} fontFamily={"brand.navFont"}>
