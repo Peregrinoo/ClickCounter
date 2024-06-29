@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import PageCPS from "./Pages/CPS";
-import NavBar from "./Pages/Components/General/Navbar";
+import NavBar from "./Components/General/Navbar";
 
 const MyRoute = () => {
     return(

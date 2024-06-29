@@ -1,5 +1,5 @@
 import {Flex} from "@chakra-ui/react";
-import CPSCounter from "../Components/CPS";
+import CPSCounter from "../../Components/CPS";
 
 const PageCPS = () => {
     return(
