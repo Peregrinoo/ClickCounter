@@ -11,8 +11,8 @@ const NavBar = () => {
                 </HStack>
 
                 <HStack spacing={'16px'} fontFamily={"brand.navFont"}>
-                    <Link> <Text color={'whitesmoke'}>CPS Test</Text> </Link>
-                    <Link> <Text color={'whitesmoke'}>About me</Text> </Link>
+                    <Link href={'/'}> <Text color={'whitesmoke'}>CPS Test</Text> </Link>
+                    <Link href={'/about'}> <Text color={'whitesmoke'}>About me</Text> </Link>
                 </HStack>
 
             </HStack>
