@@ -2,32 +2,29 @@ import { Circle, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState, useRef } from "react";
 
 const CPSCounter = () => {
-    const [setClicks] = useState<number>(0);
+    const [clicks, setClicks] = useState<number>(0);
     const [cpsRange, setCpsRange] = useState<number>(0.0);
     const [elapsedTime, setElapsedTime] = useState<number>(0);
     const startTimeRef = useRef<number | null>(null);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
     const handleClick = () => {
-        setClicks(prevClicks => {
-            const newClicks = prevClicks + 1;
+        const newClicks = clicks + 1;
+        setClicks(newClicks);
 
-            if (startTimeRef.current === null) {
-                startTimeRef.current = Date.now();
+        if (startTimeRef.current === null) {
+            startTimeRef.current = Date.now();
 
-                intervalRef.current = setInterval(() => {
-                    const currentTime = Date.now();
-                    const timeDiff = (currentTime - startTimeRef.current!) / 1000; // em segundos
-                    setElapsedTime(parseFloat(timeDiff.toFixed(2)));
-                }, 100);
-            }
+            intervalRef.current = setInterval(() => {
+                const currentTime = Date.now();
+                const timeDiff = (currentTime - startTimeRef.current!) / 1000; // em segundos
+                setElapsedTime(parseFloat(timeDiff.toFixed(2)));
 
-            const currentTime = Date.now();
-            const timeDiff = (currentTime - startTimeRef.current!) / 1000; // em segundos
-            setCpsRange(parseFloat((newClicks / timeDiff).toFixed(2)));
-
-            return newClicks;
-        });
+                if (timeDiff > 0) {
+                    setCpsRange(parseFloat((newClicks / timeDiff).toFixed(2)));
+                }
+            }, 100);
+        }
     };
 
     useEffect(() => {
@@ -37,6 +34,13 @@ const CPSCounter = () => {
             }
         };
     }, []);
+
+    useEffect(() => {
+        if (elapsedTime > 0) {
+            const timeDiff = (Date.now() - startTimeRef.current!) / 1000; // em segundos
+            setCpsRange(parseFloat((clicks / timeDiff).toFixed(2)));
+        }
+    }, [clicks, elapsedTime]);
 
     return (
         <VStack spacing="32px">
